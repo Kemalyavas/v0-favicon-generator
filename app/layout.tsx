@@ -8,7 +8,7 @@ import './globals.css'
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://favicon-generator.vercel.app'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://faviconator.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
