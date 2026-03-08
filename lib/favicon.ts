@@ -49,7 +49,7 @@ export function renderFavicon(
   }
 
   // Draw text
-  const displayChar = config.letter.charAt(0).toUpperCase()
+  const displayChar = (Array.from(config.letter)[0] || "").toUpperCase()
   const computedFontSize = size * (config.fontSize / 100)
   ctx.fillStyle = config.textColor
   ctx.font = `600 ${computedFontSize}px "Geist", "Inter", system-ui, -apple-system, sans-serif`

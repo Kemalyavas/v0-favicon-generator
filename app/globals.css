@@ -123,3 +123,47 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Blog prose styles */
+.prose h1 {
+  @apply text-3xl font-bold tracking-tight text-foreground md:text-4xl;
+}
+.prose h2 {
+  @apply mt-10 mb-4 text-xl font-semibold tracking-tight text-foreground;
+}
+.prose h3 {
+  @apply mt-6 mb-3 text-lg font-semibold text-foreground;
+}
+.prose p {
+  @apply mb-4 text-base leading-relaxed text-muted-foreground;
+}
+.prose ul {
+  @apply mb-4 ml-6 list-disc space-y-2 text-base leading-relaxed text-muted-foreground;
+}
+.prose ol {
+  @apply mb-4 ml-6 list-decimal space-y-2 text-base leading-relaxed text-muted-foreground;
+}
+.prose code {
+  @apply rounded bg-secondary px-1.5 py-0.5 font-mono text-sm text-foreground;
+}
+.prose pre {
+  @apply mb-4 overflow-x-auto rounded-md border border-border bg-secondary/50 p-4;
+}
+.prose pre code {
+  @apply bg-transparent p-0;
+}
+.prose a {
+  @apply text-foreground underline underline-offset-4;
+}
+.prose strong {
+  @apply font-semibold text-foreground;
+}
+.prose table {
+  @apply mb-4 w-full text-sm;
+}
+.prose th {
+  @apply border-b border-border px-4 py-2 text-left font-semibold text-foreground;
+}
+.prose td {
+  @apply border-b border-border px-4 py-2 text-muted-foreground;
+}
