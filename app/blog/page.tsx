@@ -1,9 +1,8 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
 import { supabase } from "@/lib/supabase"
+import { BlogSearch } from "@/components/blog-search"
 
-export const revalidate = 60 // Revalidate every 60 seconds
+export const revalidate = 60
 
 export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
@@ -46,7 +45,6 @@ const STATIC_POSTS = [
 ]
 
 export default async function Page() {
-  // Fetch dynamic blogs from Supabase
   const { data: dynamicBlogs } = await supabase
     .from('blogs')
     .select('title, slug, meta_description, created_at')
@@ -72,25 +70,7 @@ export default async function Page() {
           Guides and references for creating the perfect favicon.
         </p>
 
-        <div className="mt-10 flex flex-col gap-4">
-          {allPosts.map((post) => (
-            <Link
-              key={post.href}
-              href={post.href}
-              className="group flex items-center justify-between rounded-lg border border-border p-5 transition-colors hover:bg-secondary/50"
-            >
-              <div>
-                <h2 className="text-base font-medium text-foreground">
-                  {post.title}
-                </h2>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {post.description}
-                </p>
-              </div>
-              <ArrowRight className="ml-4 size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          ))}
-        </div>
+        <BlogSearch posts={allPosts} />
       </div>
     </main>
   )
