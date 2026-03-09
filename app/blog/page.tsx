@@ -1,6 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { supabase } from "@/lib/supabase"
+
+export const revalidate = 60 // Revalidate every 60 seconds
 
 export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
@@ -15,7 +18,7 @@ export const metadata: Metadata = {
   },
 }
 
-const POSTS = [
+const STATIC_POSTS = [
   {
     href: "/blog/what-is-a-favicon",
     title: "What Is a Favicon? Complete Guide",
@@ -42,7 +45,23 @@ const POSTS = [
   },
 ]
 
-export default function Page() {
+export default async function Page() {
+  // Fetch dynamic blogs from Supabase
+  const { data: dynamicBlogs } = await supabase
+    .from('blogs')
+    .select('title, slug, meta_description, created_at')
+    .eq('site', 'faviconator')
+    .eq('status', 'published')
+    .order('created_at', { ascending: false })
+
+  const dynamicPosts = (dynamicBlogs || []).map(blog => ({
+    href: `/blog/${blog.slug}`,
+    title: blog.title,
+    description: blog.meta_description,
+  }))
+
+  const allPosts = [...dynamicPosts, ...STATIC_POSTS]
+
   return (
     <main className="min-h-screen bg-background">
       <div className="mx-auto max-w-3xl px-4 py-12 md:py-20">
@@ -54,7 +73,7 @@ export default function Page() {
         </p>
 
         <div className="mt-10 flex flex-col gap-4">
-          {POSTS.map((post) => (
+          {allPosts.map((post) => (
             <Link
               key={post.href}
               href={post.href}
