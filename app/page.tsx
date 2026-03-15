@@ -165,32 +165,43 @@ export default function Page() {
 
       {/* Footer */}
       <footer className="border-t border-border">
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row">
-          <p className="text-xs text-muted-foreground">
-            &copy; 2025 Favicon Generator
-          </p>
-          <nav className="flex gap-4">
-            {TOOLS.map((tool) => (
+        <div className="mx-auto w-full max-w-5xl px-4 py-6">
+          <div className="mb-5 pb-5 border-b border-border">
+            <p className="text-xs font-semibold text-foreground mb-2">More Free Tools</p>
+            <div className="flex flex-wrap gap-x-5 gap-y-1">
+              <a href="https://imgpressr.com" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-foreground transition-colors">ImgPressr — Compress & convert images</a>
+              <a href="https://jsonshift.com" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-foreground transition-colors">JSONShift — Convert JSON, CSV, YAML, XML</a>
+              <a href="https://thepercentcalc.com" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-foreground transition-colors">PercentCalc — Percentage calculator</a>
+              <a href="https://caseformat.com" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-foreground transition-colors">CaseFormat — Text case converter</a>
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <p className="text-xs text-muted-foreground">
+              &copy; {new Date().getFullYear()} Favicon Generator
+            </p>
+            <nav className="flex gap-4">
+              {TOOLS.map((tool) => (
+                <Link
+                  key={tool.href}
+                  href={tool.href}
+                  className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {tool.title}
+                </Link>
+              ))}
+            </nav>
+            <div className="flex items-center gap-3">
               <Link
-                key={tool.href}
-                href={tool.href}
+                href="/privacy-policy"
                 className="text-xs text-muted-foreground transition-colors hover:text-foreground"
               >
-                {tool.title}
+                Privacy Policy
               </Link>
-            ))}
-          </nav>
-          <div className="flex items-center gap-3">
-            <Link
-              href="/privacy-policy"
-              className="text-xs text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Privacy Policy
-            </Link>
-            <span className="text-xs text-muted-foreground">&middot;</span>
-            <p className="text-xs text-muted-foreground">
-              100% client-side
-            </p>
+              <span className="text-xs text-muted-foreground">&middot;</span>
+              <p className="text-xs text-muted-foreground">
+                100% client-side
+              </p>
+            </div>
           </div>
         </div>
       </footer>
