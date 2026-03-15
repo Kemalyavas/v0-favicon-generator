@@ -35,6 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    // Programmatic SEO: favicon size pages
+    ...['16x16', '32x32', '48x48', '64x64', '128x128', '192x192', '512x512'].map((size) => ({
+      url: `${SITE_URL}/favicon/${size}`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
     {
       url: `${SITE_URL}/privacy-policy`,
       lastModified: LAST_MODIFIED,

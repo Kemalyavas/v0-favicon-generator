@@ -92,6 +92,32 @@ export default function Page() {
     <main className="min-h-screen bg-background">
       <FaviconGenerator />
 
+      {/* Favicon Sizes */}
+      <section className="mx-auto w-full max-w-3xl px-4 pb-12">
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-foreground">
+          Generate by Size
+        </h2>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { slug: '16x16', label: '16×16' },
+            { slug: '32x32', label: '32×32' },
+            { slug: '48x48', label: '48×48' },
+            { slug: '64x64', label: '64×64' },
+            { slug: '128x128', label: '128×128' },
+            { slug: '192x192', label: '192×192' },
+            { slug: '512x512', label: '512×512' },
+          ].map((s) => (
+            <Link
+              key={s.slug}
+              href={`/favicon/${s.slug}`}
+              className="rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground hover:bg-secondary/50 hover:text-foreground transition-colors"
+            >
+              {s.label}
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* More Tools */}
       <section className="mx-auto w-full max-w-3xl px-4 pb-16">
         <h2 className="mb-6 text-2xl font-semibold tracking-tight text-foreground">
